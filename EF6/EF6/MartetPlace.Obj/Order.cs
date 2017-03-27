@@ -1,4 +1,5 @@
 ﻿using MartetPlace.Obj.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace MartetPlace.Obj
 {
@@ -6,7 +7,9 @@ namespace MartetPlace.Obj
     {
         public int OrderId { get; set; }
         public OrderStatus Status { get; set; }
-        public int ShipperId { get; set; }
+        [Required]
         public Shipper Shipper { get; set; }
+        [Required]
+        public Buyer Buyer { get; set; }
     }
 }

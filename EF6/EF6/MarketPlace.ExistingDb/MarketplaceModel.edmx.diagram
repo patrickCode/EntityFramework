@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e482c08bc5bc40e4923e97dad1086330" Name="Diagram1">
+        <EntityTypeShape EntityType="GPOModel.Address" Width="1.5" PointX="0.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.Availability" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.Buyer" Width="1.5" PointX="3" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.Item" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.ItemProduct" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.ItemProductGroup" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.ItemProductPrice" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.LineItem" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.Order" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.OrderLineItem" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.PickupLocation" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GPOModel.Shipper" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <AssociationConnector Association="GPOModel.FK_Buyer_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_Buyer_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_ItemProduct_Availability" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_Order_Buyer" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_ItemProduct_ItemProductGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_ItemProduct_ItemProductPrice" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_ItemProduct_PickupLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_ItemProduct_Shipper" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_LineItem_ItemProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_OrderLineItem_LineItem" ManuallyRouted="false" />
+        <AssociationConnector Association="GPOModel.FK_OrderLineItem_Order" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

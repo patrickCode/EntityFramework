@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GPOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="StreetAddress1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StreetAddress2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CityId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Availability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="BillingName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddressId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ShipperId" Type="int" Nullable="false" />
+          <Property Name="Pack" Type="nvarchar" MaxLength="100" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="100" />
+          <Property Name="Size" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountryOfOriginId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="AvailabilityId" Type="int" Nullable="false" />
+          <Property Name="ItemProductPriceId" Type="int" Nullable="false" />
+          <Property Name="PickupLocationId" Type="int" Nullable="false" />
+          <Property Name="ItemProductGroupId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedIn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemProductGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemProductPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FOB_Price" Type="money" />
+          <Property Name="DeliveryPrice" Type="money" Nullable="false" />
+          <Property Name="Surcharge" Type="money" Nullable="false" />
+          <Property Name="CasesPerPallet" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ItemProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="LineTotal" Type="money" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="BuyerId" Type="int" Nullable="false" />
+          <Property Name="TotalQuantity" Type="int" Nullable="false" />
+          <Property Name="TotalPallets" Type="int" Nullable="false" />
+          <Property Name="ItemSubtotal" Type="money" Nullable="false" />
+          <Property Name="Total" Type="money" Nullable="false" />
+          <Property Name="PO_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickupDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderNotes" Type="nvarchar(max)" />
+          <Property Name="OrderStatusId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderLineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LineItemId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PickupLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="ImageLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="LogoLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="Specials" Type="nvarchar(max)" />
+          <Property Name="FoodSafetyDocumentLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsPriceAvailableToPrivateUsers" Type="bit" Nullable="false" />
+          <Property Name="BillingName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddressId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Buyer_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Buyer">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Buyer_Address1">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Buyer">
+              <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_Availability">
+          <End Role="Availability" Type="Self.Availability" Multiplicity="1" />
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Availability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="AvailabilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_ItemProductGroup">
+          <End Role="ItemProductGroup" Type="Self.ItemProductGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProductGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ItemProductGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_ItemProductPrice">
+          <End Role="ItemProductPrice" Type="Self.ItemProductPrice" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProductPrice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ItemProductPriceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_PickupLocation">
+          <End Role="PickupLocation" Type="Self.PickupLocation" Multiplicity="1" />
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PickupLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ShipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_Shipper">
+          <End Role="Shipper" Type="Self.Shipper" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipper">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ShipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineItem_ItemProduct">
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="1" />
+          <End Role="LineItem" Type="Self.LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="ItemProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Buyer">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLineItem_LineItem">
+          <End Role="LineItem" Type="Self.LineItem" Multiplicity="1" />
+          <End Role="OrderLineItem" Type="Self.OrderLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LineItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderLineItem">
+              <PropertyRef Name="LineItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLineItem_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderLineItem" Type="Self.OrderLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderLineItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GPOModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Availability" EntityType="Self.Availability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemProduct" EntityType="Self.ItemProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemProductGroup" EntityType="Self.ItemProductGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemProductPrice" EntityType="Self.ItemProductPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LineItem" EntityType="Self.LineItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLineItem" EntityType="Self.OrderLineItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PickupLocation" EntityType="Self.PickupLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Buyer_Address" Association="Self.FK_Buyer_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Buyer" EntitySet="Buyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Buyer_Address1" Association="Self.FK_Buyer_Address1">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Buyer" EntitySet="Buyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_Availability" Association="Self.FK_ItemProduct_Availability">
+            <End Role="Availability" EntitySet="Availability" />
+            <End Role="ItemProduct" EntitySet="ItemProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_ItemProductGroup" Association="Self.FK_ItemProduct_ItemProductGroup">
+            <End Role="ItemProductGroup" EntitySet="ItemProductGroup" />
+            <End Role="ItemProduct" EntitySet="ItemProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_ItemProductPrice" Association="Self.FK_ItemProduct_ItemProductPrice">
+            <End Role="ItemProductPrice" EntitySet="ItemProductPrice" />
+            <End Role="ItemProduct" EntitySet="ItemProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_PickupLocation" Association="Self.FK_ItemProduct_PickupLocation">
+            <End Role="PickupLocation" EntitySet="PickupLocation" />
+            <End Role="ItemProduct" EntitySet="ItemProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_Shipper" Association="Self.FK_ItemProduct_Shipper">
+            <End Role="Shipper" EntitySet="Shipper" />
+            <End Role="ItemProduct" EntitySet="ItemProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItem_ItemProduct" Association="Self.FK_LineItem_ItemProduct">
+            <End Role="ItemProduct" EntitySet="ItemProduct" />
+            <End Role="LineItem" EntitySet="LineItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Buyer" Association="Self.FK_Order_Buyer">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLineItem_LineItem" Association="Self.FK_OrderLineItem_LineItem">
+            <End Role="LineItem" EntitySet="LineItem" />
+            <End Role="OrderLineItem" EntitySet="OrderLineItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLineItem_Order" Association="Self.FK_OrderLineItem_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderLineItem" EntitySet="OrderLineItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GPOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="StreetAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StreetAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="Zip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Buyers" Relationship="Self.FK_Buyer_Address" FromRole="Address" ToRole="Buyer" />
+          <NavigationProperty Name="Buyers1" Relationship="Self.FK_Buyer_Address1" FromRole="Address" ToRole="Buyer" />
+        </EntityType>
+        <EntityType Name="Availability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ItemProducts" Relationship="Self.FK_ItemProduct_Availability" FromRole="Availability" ToRole="ItemProduct" />
+        </EntityType>
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="BillingName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingAddressId" Type="Int32" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Buyer_Address" FromRole="Buyer" ToRole="Address" />
+          <NavigationProperty Name="Address1" Relationship="Self.FK_Buyer_Address1" FromRole="Buyer" ToRole="Address" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Buyer" FromRole="Buyer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ItemProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ShipperId" Type="Int32" Nullable="false" />
+          <Property Name="Pack" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryOfOriginId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvailabilityId" Type="Int32" Nullable="false" />
+          <Property Name="ItemProductPriceId" Type="Int32" Nullable="false" />
+          <Property Name="PickupLocationId" Type="Int32" Nullable="false" />
+          <Property Name="ItemProductGroupId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedIn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Availability" Relationship="Self.FK_ItemProduct_Availability" FromRole="ItemProduct" ToRole="Availability" />
+          <NavigationProperty Name="ItemProductGroup" Relationship="Self.FK_ItemProduct_ItemProductGroup" FromRole="ItemProduct" ToRole="ItemProductGroup" />
+          <NavigationProperty Name="ItemProductPrice" Relationship="Self.FK_ItemProduct_ItemProductPrice" FromRole="ItemProduct" ToRole="ItemProductPrice" />
+          <NavigationProperty Name="PickupLocation" Relationship="Self.FK_ItemProduct_PickupLocation" FromRole="ItemProduct" ToRole="PickupLocation" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK_ItemProduct_Shipper" FromRole="ItemProduct" ToRole="Shipper" />
+          <NavigationProperty Name="LineItems" Relationship="Self.FK_LineItem_ItemProduct" FromRole="ItemProduct" ToRole="LineItem" />
+        </EntityType>
+        <EntityType Name="ItemProductGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ItemProducts" Relationship="Self.FK_ItemProduct_ItemProductGroup" FromRole="ItemProductGroup" ToRole="ItemProduct" />
+        </EntityType>
+        <EntityType Name="ItemProductPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FOB_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DeliveryPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Surcharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CasesPerPallet" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ItemProducts" Relationship="Self.FK_ItemProduct_ItemProductPrice" FromRole="ItemProductPrice" ToRole="ItemProduct" />
+        </EntityType>
+        <EntityType Name="LineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ItemProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="LineTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ItemProduct" Relationship="Self.FK_LineItem_ItemProduct" FromRole="LineItem" ToRole="ItemProduct" />
+          <NavigationProperty Name="OrderLineItems" Relationship="Self.FK_OrderLineItem_LineItem" FromRole="LineItem" ToRole="OrderLineItem" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="BuyerId" Type="Int32" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalPallets" Type="Int32" Nullable="false" />
+          <Property Name="ItemSubtotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PO_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickupDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderStatusId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK_Order_Buyer" FromRole="Order" ToRole="Buyer" />
+          <NavigationProperty Name="OrderLineItems" Relationship="Self.FK_OrderLineItem_Order" FromRole="Order" ToRole="OrderLineItem" />
+        </EntityType>
+        <EntityType Name="OrderLineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LineItemId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LineItem" Relationship="Self.FK_OrderLineItem_LineItem" FromRole="OrderLineItem" ToRole="LineItem" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderLineItem_Order" FromRole="OrderLineItem" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="PickupLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ItemProducts" Relationship="Self.FK_ItemProduct_PickupLocation" FromRole="PickupLocation" ToRole="ItemProduct" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="ImageLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogoLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Specials" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FoodSafetyDocumentLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsPriceAvailableToPrivateUsers" Type="Boolean" Nullable="false" />
+          <Property Name="BillingName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingAddressId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModifiedOn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ItemProducts" Relationship="Self.FK_ItemProduct_Shipper" FromRole="Shipper" ToRole="ItemProduct" />
+        </EntityType>
+        <Association Name="FK_Buyer_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Buyer">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Buyer_Address1">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Buyer">
+              <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_Availability">
+          <End Role="Availability" Type="Self.Availability" Multiplicity="1" />
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Availability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="AvailabilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Buyer">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_ItemProductGroup">
+          <End Role="ItemProductGroup" Type="Self.ItemProductGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProductGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ItemProductGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_ItemProductPrice">
+          <End Role="ItemProductPrice" Type="Self.ItemProductPrice" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProductPrice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ItemProductPriceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_PickupLocation">
+          <End Role="PickupLocation" Type="Self.PickupLocation" Multiplicity="1" />
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PickupLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ShipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemProduct_Shipper">
+          <End Role="Shipper" Type="Self.Shipper" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipper">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemProduct">
+              <PropertyRef Name="ShipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineItem_ItemProduct">
+          <End Role="ItemProduct" Type="Self.ItemProduct" Multiplicity="1" />
+          <End Role="LineItem" Type="Self.LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="ItemProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLineItem_LineItem">
+          <End Role="LineItem" Type="Self.LineItem" Multiplicity="1" />
+          <End Role="OrderLineItem" Type="Self.OrderLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LineItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderLineItem">
+              <PropertyRef Name="LineItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLineItem_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderLineItem" Type="Self.OrderLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderLineItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GPOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Availabilities" EntityType="Self.Availability" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyer" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="ItemProducts" EntityType="Self.ItemProduct" />
+          <EntitySet Name="ItemProductGroups" EntityType="Self.ItemProductGroup" />
+          <EntitySet Name="ItemProductPrices" EntityType="Self.ItemProductPrice" />
+          <EntitySet Name="LineItems" EntityType="Self.LineItem" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderLineItems" EntityType="Self.OrderLineItem" />
+          <EntitySet Name="PickupLocations" EntityType="Self.PickupLocation" />
+          <EntitySet Name="Shippers" EntityType="Self.Shipper" />
+          <AssociationSet Name="FK_Buyer_Address" Association="Self.FK_Buyer_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Buyer" EntitySet="Buyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Buyer_Address1" Association="Self.FK_Buyer_Address1">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Buyer" EntitySet="Buyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_Availability" Association="Self.FK_ItemProduct_Availability">
+            <End Role="Availability" EntitySet="Availabilities" />
+            <End Role="ItemProduct" EntitySet="ItemProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Buyer" Association="Self.FK_Order_Buyer">
+            <End Role="Buyer" EntitySet="Buyers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_ItemProductGroup" Association="Self.FK_ItemProduct_ItemProductGroup">
+            <End Role="ItemProductGroup" EntitySet="ItemProductGroups" />
+            <End Role="ItemProduct" EntitySet="ItemProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_ItemProductPrice" Association="Self.FK_ItemProduct_ItemProductPrice">
+            <End Role="ItemProductPrice" EntitySet="ItemProductPrices" />
+            <End Role="ItemProduct" EntitySet="ItemProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_PickupLocation" Association="Self.FK_ItemProduct_PickupLocation">
+            <End Role="PickupLocation" EntitySet="PickupLocations" />
+            <End Role="ItemProduct" EntitySet="ItemProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemProduct_Shipper" Association="Self.FK_ItemProduct_Shipper">
+            <End Role="Shipper" EntitySet="Shippers" />
+            <End Role="ItemProduct" EntitySet="ItemProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItem_ItemProduct" Association="Self.FK_LineItem_ItemProduct">
+            <End Role="ItemProduct" EntitySet="ItemProducts" />
+            <End Role="LineItem" EntitySet="LineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLineItem_LineItem" Association="Self.FK_OrderLineItem_LineItem">
+            <End Role="LineItem" EntitySet="LineItems" />
+            <End Role="OrderLineItem" EntitySet="OrderLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLineItem_Order" Association="Self.FK_OrderLineItem_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderLineItem" EntitySet="OrderLineItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GPOModelStoreContainer" CdmEntityContainer="GPOEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="GPOModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StreetAddress1" ColumnName="StreetAddress1" />
+                <ScalarProperty Name="StreetAddress2" ColumnName="StreetAddress2" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Availabilities">
+            <EntityTypeMapping TypeName="GPOModel.Availability">
+              <MappingFragment StoreEntitySet="Availability">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buyers">
+            <EntityTypeMapping TypeName="GPOModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="BillingName" ColumnName="BillingName" />
+                <ScalarProperty Name="BillingAddressId" ColumnName="BillingAddressId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="GPOModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemProducts">
+            <EntityTypeMapping TypeName="GPOModel.ItemProduct">
+              <MappingFragment StoreEntitySet="ItemProduct">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShipperId" ColumnName="ShipperId" />
+                <ScalarProperty Name="Pack" ColumnName="Pack" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="CountryOfOriginId" ColumnName="CountryOfOriginId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AvailabilityId" ColumnName="AvailabilityId" />
+                <ScalarProperty Name="ItemProductPriceId" ColumnName="ItemProductPriceId" />
+                <ScalarProperty Name="PickupLocationId" ColumnName="PickupLocationId" />
+                <ScalarProperty Name="ItemProductGroupId" ColumnName="ItemProductGroupId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedIn" ColumnName="LastModifiedIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemProductGroups">
+            <EntityTypeMapping TypeName="GPOModel.ItemProductGroup">
+              <MappingFragment StoreEntitySet="ItemProductGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemProductPrices">
+            <EntityTypeMapping TypeName="GPOModel.ItemProductPrice">
+              <MappingFragment StoreEntitySet="ItemProductPrice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FOB_Price" ColumnName="FOB_Price" />
+                <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
+                <ScalarProperty Name="Surcharge" ColumnName="Surcharge" />
+                <ScalarProperty Name="CasesPerPallet" ColumnName="CasesPerPallet" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineItems">
+            <EntityTypeMapping TypeName="GPOModel.LineItem">
+              <MappingFragment StoreEntitySet="LineItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemProductId" ColumnName="ItemProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LineTotal" ColumnName="LineTotal" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="GPOModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="TotalPallets" ColumnName="TotalPallets" />
+                <ScalarProperty Name="ItemSubtotal" ColumnName="ItemSubtotal" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PO_Number" ColumnName="PO_Number" />
+                <ScalarProperty Name="PickupDate" ColumnName="PickupDate" />
+                <ScalarProperty Name="OrderNotes" ColumnName="OrderNotes" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLineItems">
+            <EntityTypeMapping TypeName="GPOModel.OrderLineItem">
+              <MappingFragment StoreEntitySet="OrderLineItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LineItemId" ColumnName="LineItemId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PickupLocations">
+            <EntityTypeMapping TypeName="GPOModel.PickupLocation">
+              <MappingFragment StoreEntitySet="PickupLocation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippers">
+            <EntityTypeMapping TypeName="GPOModel.Shipper">
+              <MappingFragment StoreEntitySet="Shipper">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="LogoLink" ColumnName="LogoLink" />
+                <ScalarProperty Name="Specials" ColumnName="Specials" />
+                <ScalarProperty Name="FoodSafetyDocumentLink" ColumnName="FoodSafetyDocumentLink" />
+                <ScalarProperty Name="IsPriceAvailableToPrivateUsers" ColumnName="IsPriceAvailableToPrivateUsers" />
+                <ScalarProperty Name="BillingName" ColumnName="BillingName" />
+                <ScalarProperty Name="BillingAddressId" ColumnName="BillingAddressId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedOn" ColumnName="LastModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
